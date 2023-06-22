@@ -69,7 +69,6 @@ class User {
     }
   }
 
-
   testClass() {
     return 'testClass method being called'
   }

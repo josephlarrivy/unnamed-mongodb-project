@@ -1,35 +1,30 @@
-const { MongoClient } = require('mongodb');
-const { MongoMemoryServer } = require('mongodb-memory-server');
-const User = require('../models/user');
-const { getDb } = require('../db'); // Import the getDb function from the actual database configuration file
+const User = require('../models/user')
 
-let mongoServer, db, user;
-let conn;
 
-beforeAll(async () => {
-  mongoServer = new MongoMemoryServer();
-  await mongoServer.start();
-  const mongoUri = mongoServer.getUri();
-  conn = await MongoClient.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
-  db = conn.db();
-  user = new User();
-});
+// beforeAll(async () => {
+//   mongoServer = new MongoMemoryServer();
+//   await mongoServer.start();
+//   const mongoUri = mongoServer.getUri();
+//   conn = await MongoClient.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+//   db = conn.db();
+//   user = new User();
+// });
 
-afterAll(async () => {
-  await conn.close();
-  await mongoServer.stop();
-});
+// afterAll(async () => {
+//   await conn.close();
+//   await mongoServer.stop();
+// });
 
 
 describe('Test User Class Methods', () => {
 
-  it('testClass() should return a string', async () => {
-    const result = await user.testClass();
+  it('testClass() should return a string', () => {
+    const result = user.testClass();
     expect(typeof result).toBe('string');
     expect(result).toBe('testClass method being called');
   });
 
-  const testUser = { username: 'test_user', password: 'test_password', name: 'Test User' };
+  const testUser = { username: 'test_user_jest', password: 'test_password', name: 'Test User' };
   let insertedId;
 
   it('should create a new user', async () => {
