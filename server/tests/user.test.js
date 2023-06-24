@@ -1,5 +1,6 @@
 const User = require('../models/user')
-
+const { connectToDb } = require('../db')
+const user = new User()
 
 // beforeAll(async () => {
 //   mongoServer = new MongoMemoryServer();
